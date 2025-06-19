@@ -1,0 +1,24 @@
+variable playGame = true
+
+1. Print to screen: "Welcome to the Guessing Game"
+2. WHILE playGame == true
+    variable randomNumber
+    variable guessCount
+    variable userGuess
+    variable playAgainInput
+
+    1. Store random integer function between 1 to 100 in randomNumber
+    2. Print to screen: "Try to guess the hidden number in 7 tries!"
+    3. WHILE randomNumber != userGuess AND guessCount < 7:
+        1. Ask for user input: "Enter your guess"
+        2. Store result in userGuess
+        3. Increment guessCount by 1
+    4. IF randomNumber is equal to userGuess:
+        1. Print to screen: "You won in {guessCount + 1} guesses! The number was {randomNumber}"
+    5. IF randomNumber is not equal to userGuess:
+        2. Print to screen: "You lose! The number was {randomNumber}"
+    6. WHILE playAgainInput is not ("yes" OR "no"):
+        1. Ask for user input: "Play again? (yes/no)"
+        2. Store result in playAgainInput
+        3. Store playAgainInput == "yes" in playGame
+3. Print to screen: "Exiting Guessing Game"
