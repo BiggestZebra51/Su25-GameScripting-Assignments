@@ -1,4 +1,6 @@
+--Jacob Crawford
 --A game to guess a number between 1 and 100 chosen by the computer
+
 function guessingGame()
     --variables
     local playGame = "Y"
