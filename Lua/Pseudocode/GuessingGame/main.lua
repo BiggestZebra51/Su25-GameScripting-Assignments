@@ -1,2 +1,2 @@
 require("GuessingGame")
---guessingGame()
+guessingGame()
