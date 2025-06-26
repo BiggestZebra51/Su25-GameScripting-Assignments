@@ -14,7 +14,7 @@ variable playGame = true
         2. Store result in userGuess
         3. Increment guessCount by 1
     4. IF randomNumber is equal to userGuess:
-        1. Print to screen: "You won in {guessCount + 1} guesses! The number was {randomNumber}"
+        1. Print to screen: "You won in {guessCount} guesses! The number was {randomNumber}"
     5. IF randomNumber is not equal to userGuess:
         2. Print to screen: "You lose! The number was {randomNumber}"
     6. WHILE playAgainInput is not ("yes" OR "no"):
