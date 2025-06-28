@@ -1,0 +1,92 @@
+1. Convert a user-input into all caps, print the result.
+--------------------------------------------------------------
+variable lowercaseInput
+variable uppercaseOutput
+1. WHILE lowercaseInput == (NULL || Empty || Non Alpha Characters):
+	1. Ask for user input: "Enter text to capitalize"
+	2. Store result in lowercaseInput
+2. String function convert to uppercase lowercaseInput
+3. Store result in uppercaseOutput
+4. Print to screen uppercaseOutput
+--------------------------------------------------------------
+
+
+2. Have user input two numbers, add them together and print the result.
+--------------------------------------------------------------
+variable num1
+variable num2
+variable sum
+1. WHILE num1 is NOT a number:
+	1. Ask for user input: "What is your first number?: "
+	2. Store result in num1
+1. WHILE num2 is NOT a number:
+	1. Ask for user input: "What is your second number?: "
+	2. Store result in num2
+3. Add num1 and num2 then store in sum
+4. Print to screen sum
+--------------------------------------------------------------
+
+
+3. Get an unknown amount of numbers from the user and add them together, print out the result.
+--------------------------------------------------------------
+variable inputNumber
+variable sum
+variable getNextNumber = true
+
+1. WHILE getNextNumber == true:
+	1. Reset inputNumber
+	2. WHILE inputNumber is not a number:
+		1. Ask for user input: "Number: "
+		2. Store result in inputNumber
+	3. Add sum and inputNumber then store in sum
+	4. Ask for user input: "Add another number? (y/n): "
+	5. IF UPPER(userInput) != "Y":
+		1. Set getNextNumber to false
+2. Print to screen "Output: {sum}"
+--------------------------------------------------------------
+
+
+4. Have the user define a maximum whole number, print out a random number between 0 and their number. Allow the user to play again or quit.
+--------------------------------------------------------------
+variable maxNum
+variable randomNumber
+variable playagain = true
+
+1. Setup random number generator
+2. WHILE playAgain == true:
+	1. reset maxNum
+	2. Ask user "Give me a maximum whole number: "
+	3. WHILE maxNum is not a number OR maxNum is less than 1: 
+		1. Store user input in maxNum
+	4. Generate random number between 1 and maxNum then store in randomNumber
+	5. Print to screen "The computer picked the random number: {randomNumber}"
+	6. Ask for user input: "Add another number? (y/n): "
+	7. IF UPPER(userInput) != "Y":
+		1. Set playAgain to false
+3. Print to screen "Thanks for playing! Goodbye."
+--------------------------------------------------------------
+
+
+5. Get a random number. If the number is even print “RIGHT”, if it’s odd, print “LEFT”. Do this ten times. Print out how many times it was “LEFT” and how many times it was “RIGHT”.
+--------------------------------------------------------------
+variable zeroCount = 0
+variable evenCount = 0
+variable oddCount = 0
+variable checkNum
+
+1. Setup random number generator
+2. FOR 10 times:
+	1. Store random number 0 to 100 into checkNum
+	2. IF checkNum == 0
+		1. Increment zeroCount
+		2. Print to screen "{checkNum} is zero"
+	3. ELSE IF checkNum is even ((checkNum % 2) == 0):
+		1. Increment evenCount
+		2. Print to screen "{checkNum} is even"
+	3. ELSE
+		1. Increment oddCount
+		2. Print to screen "{checkNum} is odd"
+3. Print to screen "Zeroes: {zeroCount}"
+4. Print to screen "Left: {evenCount}"
+5. Print to screen "Right: {oddCount}"
+--------------------------------------------------------------

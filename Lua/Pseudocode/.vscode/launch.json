@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Lua",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "lua main.lua; exit",
+      "cwd": "${fileDirname}"
+    },
+/*     {
+      "type": "lua-local",
+      "request": "launch",
+      "name": "launch",
+      "program": {
+        "file": "main.lua",
+        "communication": "pipe"
+      },
+      "cwd": "${relativeFileDirname}"
+    }, */
+  ]
+}
