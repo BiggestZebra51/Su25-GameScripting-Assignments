@@ -43,6 +43,30 @@ local function drawStars(stars)
 
 end
 
+-- Setup draw for the title
+local function drawTitleScreen()
+    -- Create text at 100 pts
+    love.graphics.setFont(love.graphics.newFont(100))
+
+    -- Formatted text print
+    love.graphics.printf(titleText, 0, 200, love.graphics.getWidth(), "center")
+
+    -- Create button
+    -- Calculate from edge distance
+    playButtonX = 50
+    playButtonY = love.graphics.getHeight() - 150
+    playButtonWidth = 250
+    playButtonHeight = 100
+
+    love.graphics.setColor(1,1,1)
+    -- type, x, y, width, height, cornerx, cornery, segments
+    love.graphics.rectangle("fill", playButtonX, playButtonY, playButtonWidth, playButtonHeight, 10, 10, 6)
+    love.graphics.setColor(1,0,0)
+    love.graphics.setFont(love.graphics.newFont(75))
+    love.graphics.printf("Play", playButtonX, playButtonY, playButtonWidth, "center")
+    love.graphics.setColor(1,1,1)
+end
+
 --------------------------------------------------------------------------
 -- Load
 --
@@ -62,7 +86,7 @@ function love.load()
     -- 0 = title screen
     -- 1 = game screen
     -- 2 = game over screen
-    scene = 1
+    scene = 0
     
     starsTable = randomizeStars()
 
@@ -110,7 +134,13 @@ function love.mousepressed(x, y, button, istouch)
     if button == 1 then
         --if title screen
         if scene == 0 then
-            --if on title screen
+            -- If on title screen
+            -- Click play button
+            if x >= playButtonX and x <= playButtonX+playButtonWidth
+               and y >= playButtonY and y <= playButtonY+playButtonHeight then
+                local timeSinceActivated = love.timer.getTime() -- Reset the powerup timer
+                scene = 1 -- Set the scene to gameplay 
+            end
         end
         -- in game
         if scene == 1 then
@@ -164,14 +194,16 @@ end
 function love.update(dt)
     -- GAMEPLAY
     if scene == 1 then
+        -- Move ufos
         for i, yPos in ipairs(ufoY) do
             if ufoY[i] + ufoSprite:getHeight() >= love.graphics.getHeight() then
-                love.event.quit()
+                love.event.quit("restart")
             end
             -- Move ufos
             ufoY[i] = yPos + (ufoSpeed[i] * dt * globalSpeedMod)
         end
 
+        -- Powerup handlsing
         local timeSinceActivated = love.timer.getTime() - powerupLastActivatedTime
         
         if timeSinceActivated > powerupCooldown then
@@ -201,6 +233,7 @@ function love.draw()
     -- TITLE SCREEN
     if scene == 0 then
         -- Draw the title screen
+        drawTitleScreen()
     end
     -- GAMEPLAY
     if scene == 1 then
