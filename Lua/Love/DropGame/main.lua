@@ -9,11 +9,38 @@ end
 
 -- should have title screen, level 1, game over
 
-function titleLoad()
+
+local function titleLoad()
     titleText = "UFO Drop"
 
     -- Update the window to be titled titleText
     love.window.setTitle(titleText)
+end
+
+-- Create randomized table of stars
+local function randomizeStars()
+    local count = 100
+    local stars = {} -- This is the table of x,y values for our stars
+    while count > 0 do
+        stars[#stars+1] = math.random(0, love.graphics.getWidth())  -- X Value
+        stars[#stars+1] = math.random(0, love.graphics.getHeight()) -- Y Value
+        count = count - 1
+    end
+
+    return stars
+end
+
+local function drawStars(stars)
+    -- Star glow (Big brush, light opacity)
+    love.graphics.setColor(0.5, 0.5, 0.5, 0.22)
+    love.graphics.setPointSize(10)
+    love.graphics.points(stars)
+
+    -- Center point
+    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.setPointSize(1)
+    love.graphics.points(stars)
+
 end
 
 --------------------------------------------------------------------------
@@ -21,16 +48,23 @@ end
 --
 --------------------------------------------------------------------------
 function love.load()
+    -- Randomization
+    math.randomseed(os.time())
+    math.random(); math.random(); math.random()
+
     --by default, love sets your window to 800x600
-    success = love.window.updateMode(1024, 768)
+    local success = love.window.updateMode(1024, 768)
 
-    -- load title
-    titleLoad()
-
+    --------------------------------------------------------------------------
+    -- Variables
+    --
+    --------------------------------------------------------------------------
     -- 0 = title screen
     -- 1 = game screen
     -- 2 = game over screen
     scene = 1
+    
+    starsTable = randomizeStars()
 
     ufoSprite = love.graphics.newImage("sprites/ufo/ufo_green.png")
     ufoNums = 5 -- how many
@@ -53,10 +87,10 @@ function love.load()
     powerupSpawnOffsetMax = 4         -- The max offset for the cooldown
     powerupSpawnOffset = 0            -- The randomized offset for the powerup spawn cooldown
     powerupLastActivatedTime = love.timer.getTime() -- The time the powerup was last activated
+    --------------------------------------------------------------------------
 
-    -- Randomization
-    math.randomseed(os.time())
-    math.random(); math.random(); math.random()
+    -- load title
+    titleLoad()
 
     for i = 1, ufoNums, 1 do
         ufoX[#ufoX+1] = math.random(0, love.graphics.getWidth() - ufoSprite:getWidth())
@@ -163,6 +197,7 @@ end
 -- 
 --------------------------------------------------------------------------
 function love.draw()
+    drawStars(starsTable)
     -- TITLE SCREEN
     if scene == 0 then
         -- Draw the title screen
