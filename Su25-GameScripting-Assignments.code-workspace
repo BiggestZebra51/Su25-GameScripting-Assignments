@@ -4,10 +4,7 @@
 			"path": "."
 		},
 		{
-			"path": "Lua/Love"
-		},
-		{
-			"path": "Lua/Pseudocode"
+			"path": "Python"
 		}
 	],
 	"settings": {}
